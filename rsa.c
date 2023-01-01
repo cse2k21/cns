@@ -17,7 +17,7 @@ int modfun(int a, int n, int b)
 {
     if(b==1)
             return a%n;
-    return ((a%n)*modfun(a,n,b-1)%n;)
+    return ((a%n)*modfun(a,n,b-1))%n;
 }
 
 int totient(int n)
@@ -40,20 +40,21 @@ void main()
     scanf("%d %d",&a,&b);
     n=a*b;
     phi=totient(n);
-    printf("Value of phin: %d\n",phin);
+    printf("Value of phin: %d\n",phi);
     for(e=5;e<=100;e++){
-        if(findGCD(phin,e)==1)
+        if(gcd(phi,e)==1)
             break;
     }
     for(d=e+1;d<=100;d++){
-        if((d*e)%phin==1)
+        if((d*e)%phi==1)
             break;
     }
     printf("Value of e: %d \nValue of d: %d \n",e,d);
     printf("\nEnter some numerical data: ");
+    int data;
     scanf("%d",&data);
-    cipher=powMod(data,e,n);
+    int cipher=modfun(data,n,e);
     printf("\nThe Cipher text = %d \n",cipher);
-    decrypt=powMod(cipher,d,n);
+    int decrypt=modfun(cipher,n,d);
     printf("The Decrypted text = %d \n",decrypt);
 }
